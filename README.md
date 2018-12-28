@@ -10,12 +10,13 @@
 ## 安装和使用
 
 1. 安装Node.js及npm环境
-2. 下载源码到本地，并解压缩
-3. 移动到解压后的目录下
-4. 使用命令`npm install`安装所需要的库
-5. 运行命令`npm start`，建议配合`forever`
-6. 访问`localhost:3000#roomName`查看效果，其中`roomName`为进入的房间名，不同房间的用户无法互相
-7. 部署服务器的话需要使用nginx或者apache2配置https和wss的代理
+2. 部署turnserver,参见https://github.com/coturn/coturn.git
+3. 下载源码到本地，并解压缩
+4. 移动到解压后的目录下
+5. 使用命令`npm install`安装所需要的库
+6. 运行命令`npm start`，建议配合`forever`
+7. 访问`localhost:3000#roomName`查看效果，其中`roomName`为进入的房间名，不同房间的用户无法互相
+8. 部署服务器的话需要使用nginx或者apache2配置https和wss的代理
 
 ##   nginx代理https和wss
 
