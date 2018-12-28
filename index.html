@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>SkyRTC聊天室Demo</title>
+  <link rel="stylesheet" type="text/css" href="/dist/css/index.css">
+</head>
+<body>
+  <div id="chat">
+    <div class="msgs" id="msgs"></div>
+    <input type="file" id="fileIpt" class="fileIpt">
+    <button id="sendFileBtn" class="sendFileBtn">发送文件</button>
+    <input type="text" id="msgIpt" class="msgIpt">
+    <button id="sendBtn" class="sendBtn">发送</button>
+  </div>
+  <div id="videos">
+    <video id="me" autoplay></video>
+  </div>
+  <div id="files">
+  </div>
+</body>
+<script type="text/javascript" src="/dist/js/SkyRTC-client.js"></script>
+<script type="text/javascript" src="/dist/js/conn.js"></script>
+</html>
