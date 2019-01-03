@@ -6,7 +6,11 @@ var SkyRTC = function() {
     var nativeRTCSessionDescription = (window.mozRTCSessionDescription || window.RTCSessionDescription); // order is very important: "RTCSessionDescription" defined in Nighly but useless
     var moz = !!navigator.mozGetUserMedia;
     var iceServer = {
-        "iceServers": [{
+        "iceServers": [
+          {
+            "urls": "stun:47.254.34.146:3478"
+        },
+		{
             "urls": "turn:47.254.34.146:3478",
             "credential": "123456",
             "username": "dds"
