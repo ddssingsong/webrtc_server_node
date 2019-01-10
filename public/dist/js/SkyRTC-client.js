@@ -235,11 +235,14 @@ var SkyRTC = function() {
     skyrtc.prototype.attachStream = function(stream, domId) {
         var element = document.getElementById(domId);
         if (navigator.mozGetUserMedia) {
+            console.log("dds mozGetUserMedia")
             element.mozSrcObject = stream;
             element.play();
         } else {
+            console.log("dds mozGetUserMedia1")
             element.srcObject = stream//webkitURL.createObjectURL(stream);
         }
+        console.log("dds mozGetUserMedia2")
         element.srcObject = stream//streamwebkitURL.createObjectURL(stream);
     };
 

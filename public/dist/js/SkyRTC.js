@@ -16,7 +16,7 @@ function SkyRTC() {
     this.rooms = {};
     // 加入房间
     this.on('__join', function (data, socket) {
-        console.log("房间里人数:" + this.sockets.length);
+        console.log("房间里有"+this.sockets.length+"人");
         var ids = [],
             i, m,
             room = data.room || "__default",
@@ -224,7 +224,6 @@ module.exports.listen = function (server) {
     SkyRTCServer.on('connection', function (socket) {
         this.rtc.init(socket);
     });
-
 
 
     return SkyRTCServer;
