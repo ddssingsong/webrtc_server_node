@@ -8,15 +8,21 @@ var SkyRTC = function() {
     var iceServer = {
         "iceServers": [
           {
+            "url": "stun:stun.l.google.com:19302"
+          },
+          {
             "url": "stun:47.254.34.146:3478"
+          },
+          {
+             "url": "turn:47.254.34.146:3478",
+             "username":"dds",
+             "credential":"123456"
           }
         ]
     };
     var packetSize = 1000;
     /**********************************************************/
-    /*                                                        */
     /*                       事件处理器                       */
-    /*                                                        */
     /**********************************************************/
     function EventEmitter() {
         this.events = {};
