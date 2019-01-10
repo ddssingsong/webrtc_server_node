@@ -8,13 +8,9 @@ var SkyRTC = function() {
     var iceServer = {
         "iceServers": [
           {
-            "urls": "stun:47.254.34.146:3478"
-        },
-		{
-            "urls": "turn:47.254.34.146:3478",
-            "credential": "123456",
-            "username": "dds"
-        }]
+            "url": "stun:47.254.34.146:3478"
+          }
+        ]
     };
     var packetSize = 1000;
     /**********************************************************/
