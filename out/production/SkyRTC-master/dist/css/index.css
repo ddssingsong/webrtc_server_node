@@ -1,0 +1,73 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+#videos {
+    position: absolute;
+    left: 30%;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+}
+
+#videos video {
+    display: inline-block;
+    width: 32%;
+}
+
+#chat {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 30%;
+    border: 1px solid #0f0f0f;
+}
+
+#chat .msgIpt, #chat .fileIpt {
+    position: absolute;
+    left: 0;
+    width: 80%;
+}
+
+#chat .sendBtn, #chat .sendFileBtn {
+    position: absolute;
+    left: 80%;
+    width: 20%;
+}
+
+#chat .msgIpt, #chat .sendBtn {
+    bottom: 0;
+}
+
+#chat .fileIpt, #chat .sendFileBtn {
+    bottom: 30px;
+}
+
+#chat .msgs {
+    padding: 5%;
+}
+
+#chat .msgs p {
+    margin: 0.3em 0;
+}
+
+#files {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 20%;
+}
+
+#files .name {
+}
+
+#files .percent {
+    font-weight: bold;
+    text-decoration: none
+}

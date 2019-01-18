@@ -16,7 +16,7 @@ function SkyRTC() {
     this.rooms = {};
     // 加入房间
     this.on('__join', function (data, socket) {
-        console.log("房间里有"+this.sockets.length+"人");
+        console.log(this.sockets.length+"人");
         var ids = [],
             i, m,
             room = data.room || "__default",
@@ -60,7 +60,6 @@ function SkyRTC() {
             soc.send(JSON.stringify({
                 "eventName": "_ice_candidate",
                 "data": {
-                    "id":data.id,
                     "label": data.label,
                     "candidate": data.candidate,
                     "socketId": socket.id
