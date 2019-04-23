@@ -58,3 +58,4 @@ typings/
 .env
 .iml
 out/
+.idea/
