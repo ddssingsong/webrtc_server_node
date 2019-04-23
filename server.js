@@ -1,13 +1,15 @@
-var express = require('express');
-var app = express();
-var server = require('http').createServer(app);
+const express = require('express');
+const app = express();
+const server = require('http').createServer(app);
+const path = require("path");
+const SkyRTC = require('./public/dist/js/SkyRTC.js').listen(server);
+const port = process.env.PORT || 3000;
+const hostname = "0.0.0.0";
 
-var path = require("path");
-app.use(express.static(path.join(__dirname, 'public')));
-var SkyRTC = require('./public/dist/js/SkyRTC.js').listen(server);
 
-var port = process.env.PORT || 3000;
-var hostname = "0.0.0.0"
+app.use(express.static(path.join(__dirname, 'public')), null);
+
+
 server.listen(port, hostname, function () {
     console.log(`Server running at http://${hostname}:${port}/`);
 });
