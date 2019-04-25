@@ -1,9 +1,10 @@
-var SkyRTC = function () {
+const SkyRTC = function () {
     var PeerConnection = (window.PeerConnection || window.webkitPeerConnection00 || window.webkitRTCPeerConnection || window.mozRTCPeerConnection);
     var URL = (window.URL || window.webkitURL || window.msURL || window.oURL);
     var getUserMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
     var nativeRTCIceCandidate = (window.RTCIceCandidate);
-    var nativeRTCSessionDescription = (window.mozRTCSessionDescription || window.RTCSessionDescription); // order is very important: "RTCSessionDescription" defined in Nighly but useless
+    var nativeRTCSessionDescription = (window.mozRTCSessionDescription || window.RTCSessionDescription);
+    // order is very important: "RTCSessionDescription" defined in Nighly but useless
     var iceServer = {
         "iceServers": [
             {
@@ -20,10 +21,8 @@ var SkyRTC = function () {
         ]
     };
     var packetSize = 1000;
-    /**********************************************************/
-    /*                       事件处理器                       */
 
-    /**********************************************************/
+    /*                       事件处理器                       */
     function EventEmitter() {
         this.events = {};
     }
@@ -143,7 +142,7 @@ var SkyRTC = function () {
         this.on("_ice_candidate", function (data) {
             var candidate = new nativeRTCIceCandidate(data);
             var pc = that.peerConnections[data.socketId];
-            if(!pc || !pc.remoteDescription.type){
+            if (!pc || !pc.remoteDescription.type) {
                 //push candidate onto queue...
                 console.log("remote not set!")
             }
@@ -329,7 +328,7 @@ var SkyRTC = function () {
                 that.socket.send(JSON.stringify({
                     "eventName": "__ice_candidate",
                     "data": {
-                        "id":evt.candidate.sdpMid,
+                        "id": evt.candidate.sdpMid,
                         "label": evt.candidate.sdpMLineIndex,
                         "candidate": evt.candidate.candidate,
                         "socketId": socketId
