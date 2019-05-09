@@ -1,10 +1,21 @@
 const SkyRTC = function () {
-    var PeerConnection = (window.PeerConnection || window.webkitPeerConnection00 || window.webkitRTCPeerConnection || window.mozRTCPeerConnection);
+    var PeerConnection = (window.PeerConnection || window.webkitPeerConnection00 || window.webkitRTCPeerConnection ||
+        window.mozRTCPeerConnection);
     var URL = (window.URL || window.webkitURL || window.msURL || window.oURL);
-    var getUserMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
-    var nativeRTCIceCandidate = (window.RTCIceCandidate);
+
+    var getUserMedia = (navigator.getUserMedia ||//旧版API
+        navigator.mediaDevices.getUserMedia ||//最新的标准API
+        navigator.webkitGetUserMedia ||  //webkit核心浏览器
+        navigator.mozGetUserMedia ||     //firfox浏览器
+        navigator.msGetUserMedia
+    );
+
+
+    var nativeRTCIceCandidate = (window.mozRTCIceCandidate || window.RTCIceCandidate);
     var nativeRTCSessionDescription = (window.mozRTCSessionDescription || window.RTCSessionDescription);
-    // order is very important: "RTCSessionDescription" defined in Nighly but useless
+    var moz = !!navigator.mozGetUserMedia;
+
+
     var iceServer = {
         "iceServers": [
             {
@@ -49,7 +60,6 @@ const SkyRTC = function () {
 
     /**********************************************************/
     /*                   流及信道建立部分                       */
-
     /**********************************************************/
 
 
@@ -87,8 +97,6 @@ const SkyRTC = function () {
 
     /*************************服务器连接部分***************************/
 
-
-    //本地连接信道，信道为websocket
     skyrtc.prototype.connect = function (server, room) {
         var socket,
             that = this;
@@ -164,7 +172,8 @@ const SkyRTC = function () {
             delete that.peerConnections[data.socketId];
             delete that.dataChannels[data.socketId];
             for (sendId in that.fileChannels[data.socketId]) {
-                that.emit("send_file_error", new Error("Connection has been closed"), data.socketId, sendId, that.fileChannels[data.socketId][sendId].file);
+                that.emit("send_file_error", new Error("Connection has been closed"), data.socketId, sendId, that.fileChannels[
+                    data.socketId][sendId].file);
             }
             delete that.fileChannels[data.socketId];
             that.emit("remove_peer", data.socketId);
@@ -198,28 +207,54 @@ const SkyRTC = function () {
 
 
     /*************************流处理部分*******************************/
+    //访问用户媒体设备的兼容方法
+    function getUserMediaFun(constraints, success, error) {
+        if (navigator.mediaDevices.getUserMedia) {
+            //最新的标准API
+            navigator.mediaDevices.getUserMedia(constraints).then(success).catch(error);
+        } else if (navigator.webkitGetUserMedia) {
+            //webkit核心浏览器
+            navigator.webkitGetUserMedia(constraints, success, error)
+        } else if (navigator.mozGetUserMedia) {
+            //firfox浏览器
+            navigator.mozGetUserMedia(constraints, success, error);
+        } else if (navigator.getUserMedia) {
+            //旧版API
+            navigator.getUserMedia(constraints, success, error);
+        } else {
+            that.emit("stream_create_error", new Error('WebRTC is not yet supported in this browser.'));
+        }
+    }
 
+    function createStreamSuccess(stream) {
+        if (gThat) {
+            gThat.localMediaStream = stream;
+            gThat.initializedStreams++;
+            gThat.emit("stream_created", stream);
+            if (gThat.initializedStreams === gThat.numStreams) {
+                gThat.emit("ready");
+            }
+        }
+    }
+
+    function createStreamError(error) {
+        if (gThat) {
+            gThat.emit("stream_create_error", error);
+        }
+    }
 
     //创建本地流
+    var gThat;
     skyrtc.prototype.createStream = function (options) {
         var that = this;
-
+        gThat = this;
         options.video = !!options.video;
         options.audio = !!options.audio;
 
         if (getUserMedia) {
             this.numStreams++;
-            getUserMedia.call(navigator, options, function (stream) {
-                    that.localMediaStream = stream;
-                    that.initializedStreams++;
-                    that.emit("stream_created", stream);
-                    if (that.initializedStreams === that.numStreams) {
-                        that.emit("ready");
-                    }
-                },
-                function (error) {
-                    that.emit("stream_create_error", error);
-                });
+            // 调用用户媒体设备, 访问摄像头
+            getUserMediaFun(options, createStreamSuccess, createStreamError);
         } else {
             that.emit("stream_create_error", new Error('WebRTC is not yet supported in this browser.'));
         }
@@ -235,14 +270,16 @@ const SkyRTC = function () {
         }
     };
 
-    //将流绑定到video标签上用于输出
+    // 将流绑定到video标签上用于输出
     skyrtc.prototype.attachStream = function (stream, domId) {
+        console.log("domId---" + domId + "    " + "stream--:" + stream);
         var element = document.getElementById(domId);
-        try {
+        if (navigator.mediaDevices.getUserMedia) {
             element.srcObject = stream;
-        } catch (error) {
-            element.src = URL.createObjectURL(stream);
+        } else {
+            element.src = webkitURL.createObjectURL(stream);
         }
+        element.play();
     };
 
 

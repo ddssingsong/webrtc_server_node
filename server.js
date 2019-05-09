@@ -6,7 +6,6 @@ const SkyRTC = require('./public/dist/js/SkyRTC.js').listen(server);
 const port = process.env.PORT || 3000;
 const hostname = "0.0.0.0";
 
-
 app.use(express.static(path.join(__dirname, 'public')), null);
 
 

@@ -136,6 +136,8 @@ SkyRTC.prototype.broadcast = function (data, errorCb) {
     }
 };
 
+
+
 SkyRTC.prototype.broadcastInRoom = function (room, data, errorCb) {
     var curRoom = this.rooms[room], i;
     if (curRoom) {
