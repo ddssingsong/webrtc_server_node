@@ -1,22 +1,21 @@
 const SkyRTC = function () {
-    var PeerConnection = (window.PeerConnection || window.webkitPeerConnection00 || window.webkitRTCPeerConnection ||
-        window.mozRTCPeerConnection);
-    var URL = (window.URL || window.webkitURL || window.msURL || window.oURL);
 
-    var getUserMedia = (navigator.getUserMedia ||//旧版API
+    //创建本地流
+    let gThat;
+    let PeerConnection = (window.PeerConnection || window.webkitPeerConnection00 || window.webkitRTCPeerConnection ||
+        window.mozRTCPeerConnection);
+    let getUserMedia = (navigator.getUserMedia ||//旧版API
         navigator.mediaDevices.getUserMedia ||//最新的标准API
         navigator.webkitGetUserMedia ||  //webkit核心浏览器
         navigator.mozGetUserMedia ||     //firfox浏览器
         navigator.msGetUserMedia
     );
 
-
-    var nativeRTCIceCandidate = (window.mozRTCIceCandidate || window.RTCIceCandidate);
-    var nativeRTCSessionDescription = (window.mozRTCSessionDescription || window.RTCSessionDescription);
-    var moz = !!navigator.mozGetUserMedia;
+    let nativeRTCIceCandidate = (window.mozRTCIceCandidate || window.RTCIceCandidate);
+    let nativeRTCSessionDescription = (window.mozRTCSessionDescription || window.RTCSessionDescription);
 
 
-    var iceServer = {
+    const iceServer = {
         "iceServers": [
             {
                 "url": "stun:stun.l.google.com:19302"
@@ -31,7 +30,7 @@ const SkyRTC = function () {
             }
         ]
     };
-    var packetSize = 1000;
+    let packetSize = 1000;
 
     /*                       事件处理器                       */
     function EventEmitter() {
@@ -60,6 +59,7 @@ const SkyRTC = function () {
 
     /**********************************************************/
     /*                   流及信道建立部分                       */
+
     /**********************************************************/
 
 
@@ -243,8 +243,6 @@ const SkyRTC = function () {
         }
     }
 
-    //创建本地流
-    var gThat;
     skyrtc.prototype.createStream = function (options) {
         var that = this;
         gThat = this;

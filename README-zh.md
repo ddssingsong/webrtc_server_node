@@ -1,36 +1,30 @@
+# webrtc服务器端
 
-> [中文文档](<https://github.com/ddssingsong/webrtc_server/blob/master/README-zh.md>)
-
-## Override 
-
-Signaling server based on webrtc, including browser-side display
+群名称：webrtc技术交流群
+群 号：601332720
 
 
-## Getting started
+---
+## 简介
 
-1. The project relies on Node.js and npm
-2. Deploy turn and stun services : https://github.com/coturn/coturn.git
+服务器端代码和浏览器端代码
 
-then 
+目前只支持chrome和opera浏览器
+
+## 安装和使用
+
+1. 安装Node.js及npm环境
+2. 部署turnserver,参见https://github.com/coturn/coturn.git
+3. 下载源码到本地，并解压缩
+4. 移动到解压后的目录下
+5. 使用命令`npm install`安装所需要的库
+6. 运行命令`npm start`，建议配合`forever`
+7. 访问`localhost:3000#roomName`查看效果，其中`roomName`为进入的房间名，不同房间的用户无法互相
+8. 部署服务器的话需要使用nginx或者apache2配置https和wss的代理
+
+##   nginx代理https和wss
+
 ```shell
-git clone https://github.com/ddssingsong/webrtc_server.git
-cd webrtc_server/
-npm install 
-
-# start
-node server.js  
-
-#You can see the results below
-
-# Server running at http://0.0.0.0:3000/
-
-```
-
-## Publishing
-
-If you want to deploy to the server, you need to configure the nginx agent.
-
-```angular2
  #代理https
  upstream web {
     server 0.0.0.0:3000;      
@@ -75,6 +69,5 @@ If you want to deploy to the server, you need to configure the nginx agent.
      proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
   }
 }
-
-
 ```
+
