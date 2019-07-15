@@ -21,12 +21,12 @@ const SkyRTC = function () {
                 "url": "stun:stun.l.google.com:19302"
             },
             {
-                "url": "stun:47.107.132.117:3478"
+                "url": "stun:global.stun.twilio.com:3478"
             },
             {
-                "url": "turn:47.107.132.117:3478",
-                "username": "ddssingsong",
-                "credential": "123456"
+                "url": "turn:global.stun.twilio.com:3478",
+                "username": "79fdd6b3c57147c5cc44944344c69d85624b63ec30624b8674ddc67b145e3f3c",
+                "credential": "xjfTOLkVmDtvFDrDKvpacXU7YofAwPg6P6TXKiztVGw"
             }
         ]
     };
