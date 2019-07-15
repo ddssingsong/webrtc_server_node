@@ -21,11 +21,11 @@ const SkyRTC = function () {
                 "url": "stun:stun.l.google.com:19302"
             },
             {
-                "url": "stun:47.254.34.146:3478"
+                "url": "stun:47.107.132.117:3478"
             },
             {
-                "url": "turn:47.254.34.146:3478",
-                "username": "dds",
+                "url": "turn:47.107.132.117:3478",
+                "username": "ddssingsong",
                 "credential": "123456"
             }
         ]
