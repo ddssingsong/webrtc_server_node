@@ -270,7 +270,6 @@ const SkyRTC = function () {
 
     // 将流绑定到video标签上用于输出
     skyrtc.prototype.attachStream = function (stream, domId) {
-        console.log("domId---" + domId + "    " + "stream--:" + stream);
         var element = document.getElementById(domId);
         if (navigator.mediaDevices.getUserMedia) {
             element.srcObject = stream;

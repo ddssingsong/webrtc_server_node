@@ -88,7 +88,7 @@ rtc.on("connected", function (socket) {
     //创建本地视频流
     rtc.createStream({
         "video": true,
-        "audio": false
+        "audio": true
     });
 });
 //创建本地视频流成功
