@@ -375,7 +375,6 @@ const SkyRTC = function () {
         pc.onopen = function () {
             that.emit("pc_opened", socketId, pc);
         };
-
         pc.onaddstream = function (evt) {
             that.emit('pc_add_stream', evt.stream, socketId, pc);
         };
