@@ -64,6 +64,7 @@ function SkyRTC() {
                 "data": {
                     "id": data.id,
                     "label": data.label,
+                    "sdpMLineIndex" :data.label,
                     "candidate": data.candidate,
                     "socketId": socket.id
                 }

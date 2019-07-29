@@ -364,6 +364,7 @@ const SkyRTC = function () {
                     "data": {
                         "id": evt.candidate.sdpMid,
                         "label": evt.candidate.sdpMLineIndex,
+                        "sdpMLineIndex": evt.candidate.sdpMLineIndex,
                         "candidate": evt.candidate.candidate,
                         "socketId": socketId
                     }
