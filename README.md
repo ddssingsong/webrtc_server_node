@@ -1,9 +1,21 @@
 
-> [中文文档](<https://github.com/ddssingsong/webrtc_server/blob/master/README-zh.md>)
+![logo](https://github.com/ddssingsong/webrtc_android/blob/master/art/logo1.png)
 
 ## Override 
 
+> [中文文档](<https://github.com/ddssingsong/webrtc_server/blob/master/README-zh.md>)
+
+A set of voice and video systems based on  webrtc can be developed for single or multiple channels.
+
 Signaling server based on webrtc, including browser-side display
+
+
+
+Mainly developed with Android-side code
+
+
+[https://github.com/ddssingsong/webrtc_android](https://github.com/ddssingsong/webrtc_android)
+
 
 
 ## Getting started
@@ -26,55 +38,11 @@ node server.js
 
 ```
 
-## Publishing
 
-If you want to deploy to the server, you need to configure the nginx agent.
+## QQ
 
-```angular2
- #代理https
- upstream web {
-    server 0.0.0.0:3000;      
-        }
- #代理websocket
- upstream websocket {
-    server 0.0.0.0:3000;   
-        }
-        
- server { 
-    listen       443; 
-    server_name  localhost;
-	ssl          on;
+QQ Group Name ：webrtc技术交流群
 
-    ssl_certificate     /cert/cert.crt;#配置证书
-    ssl_certificate_key  /cert/cert.key;#配置密钥
+QQ Group ：601332720
 
-	ssl_session_cache    shared:SSL:1m;
-    ssl_session_timeout  50m;
-	ssl_protocols TLSv1 TLSv1.1 TLSv1.2 SSLv2 SSLv3;
-    ssl_ciphers  HIGH:!aNULL:!MD5;
-    ssl_prefer_server_ciphers  on;
-
-    #charset koi8-r;
-    #access_log  logs/host.access.log  main;
-    
-  #wss 反向代理  
-  location /wss {
-     proxy_pass http://websocket/; # 代理到上面的地址去
-     proxy_read_timeout 60s;
-     proxy_set_header Host $host;
-     proxy_set_header X-Real_IP $remote_addr;
-     proxy_set_header X-Forwarded-for $remote_addr;
-     proxy_set_header Upgrade $http_upgrade;
-     proxy_set_header Connection 'Upgrade';	
-  }
-  #https 反向代理
-  location / {
-     proxy_pass         http://web/;
-     proxy_set_header   Host             $host;
-     proxy_set_header   X-Real-IP        $remote_addr;
-     proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
-  }
-}
-
-
-```
+加入群一起探讨webrtc，分享好的开源项目
