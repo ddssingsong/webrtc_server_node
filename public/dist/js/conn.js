@@ -95,6 +95,8 @@ rtc.on("connected", function (socket) {
 rtc.on("stream_created", function (stream) {
     document.getElementById('me').srcObject = stream;
     document.getElementById('me').play();
+    // 设置本地不播放自己的声音
+    document.getElementById('me').volume = 0.0;
 });
 //创建本地视频流失败
 rtc.on("stream_create_error", function () {
