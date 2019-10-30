@@ -1,6 +1,6 @@
 # webrtc服务器端
 
-![logo](https://github.com/ddssingsong/webrtc_android/blob/master/art/logo1.png)
+![logo](https://github.com/ddssingsong/webrtc_server_node/tree/master/art/logo1.png)
 
 ## 简介
 
@@ -9,6 +9,8 @@
 
 
 本demo主要是服务器端代码和浏览器端代码
+
+浏览器端展示地址：https://47.93.186.97/#122323
 
 主要是配合Android端代码而开发
 
