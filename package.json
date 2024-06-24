@@ -6,7 +6,7 @@
 		"start": "DEBUG=express:* node server.js"
 	},
 	"dependencies": {
-		"ws": ">= 7.4.6",
+		"ws": ">= 7.5.10",
 		"node-uuid": ">= 1.4.1",
 		"express": "4.19.2"
 	}
